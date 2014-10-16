@@ -13,7 +13,8 @@ stage-stamp: configure-stamp
 configure-stamp: patch-stamp
 	(cd $(pq_module_name) && ./configure --prefix=$(part_dir)) && touch $@
 
-patch-stamp: unpack-stamp
+patch-stamp: unpack-stamp fix-pkgconfig.patch
+	patch -p0 < $(source_dir)/fix-pkgconfig.patch
 	touch $@
 
 unpack-stamp:
